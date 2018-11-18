@@ -1,0 +1,19 @@
+erver:
+  port: 8080
+  servlet:
+    contextPath: /api
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    url: jdbc:mysql://3.0.146.83:33033/meetbox
+    username: meetbox
+    password: meetbox1234
+
+  security:
+    user:
+      name: admin
+      password: admin@123
