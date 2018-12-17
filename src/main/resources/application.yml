@@ -1,5 +1,5 @@
-erver:
-  port: 8080
+server:
+  port: 3000
   servlet:
     contextPath: /api
 
