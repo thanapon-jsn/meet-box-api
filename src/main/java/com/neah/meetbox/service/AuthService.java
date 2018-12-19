@@ -8,20 +8,31 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserProfileService {
+public class AuthService {
 
     private UserProfileRepository userProfileRepository;
 
     @Autowired
-    public UserProfileService(UserProfileRepository userProfileRepository) {
+    public AuthService(UserProfileRepository userProfileRepository) {
         this.userProfileRepository = userProfileRepository;
     }
 
-    public Optional<UserProfile> getUserProfileById(Integer id) {
-        return userProfileRepository.findById(id);
+    public Optional<UserProfile> signIn(String username, String password) {
+
+        Optional<UserProfile> userProfile = userProfileRepository.findAllByUsername(username);
+
+        if (!userProfile.isPresent()) {
+            return Optional.empty();
+        }
+
+        if (!userProfile.get().getPassword().equals(password)) {
+            return Optional.empty();
+        }
+
+        return userProfile;
     }
 
-    public UserProfile createUserProfile(UserProfile userProfile){
+    public UserProfile signUp(UserProfile userProfile) {
         UserProfile createUser = userProfileRepository.save(userProfile);
 
         return createUser == null ? new UserProfile() : createUser;

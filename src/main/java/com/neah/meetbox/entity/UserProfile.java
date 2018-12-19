@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 public class UserProfile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
 
     @NotNull
